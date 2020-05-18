@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/', 'PageController@index');
 
-Route::resource('page', 'HomeController');
+Route::resource('page', 'PageController');
 
 Auth::routes();
 

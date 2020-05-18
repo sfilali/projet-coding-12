@@ -131,53 +131,46 @@
         <section id="home">     
             <div id="home-carousel" class="carousel slide" data-interval="false">
                 <ol class="carousel-indicators">
-                    <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#home-carousel" data-slide-to="1"></li>
-                    <li data-target="#home-carousel" data-slide-to="2"></li>
-                    <li data-target="#home-carousel" data-slide-to="3"></li>
+                    @foreach ($pages as $page)
+                        <li data-target="#home-carousel" data-slide-to="{{($page->id) - 1}}" class="{{$page->id == 1 ? 'active' : ''}}"></li>
+                    @endforeach
                 </ol>
                 <!--/.carousel-indicators-->
 
                 <div class="carousel-inner">
 
-                    <div class="item active"  style="background-image: url('img/slider/bg1.jpg')" >
+                    {{-- <div class="item active"  style="background-image: url('img/slider/bg1.jpg')" >
                         <div class="carousel-caption">
                             <div class="animated bounceInRight">
                                 <h2>HELLO WORLD! <br>WE ARE KASPER,WE MAKE ART.</h2>
                                 <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur aliquet quam. Accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt.</p>
                             </div>
                         </div>
-                    </div>              
+                    </div>               --}}
 
-                    <div class="item" style="background-image: url('img/slider/bg2.jpg')">                
-                        <div class="carousel-caption">
-                            <div class="animated bounceInDown">
-                                <h2>HELLO WORLD! <br>WE ARE KASPER,WE MAKE ART.</h2>
-                                <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur aliquet quam. Accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Bounce - style animate.css -->
+                    <?php 
+                        $bounces = [
+                            "bounceInRight",
+                            "bounceInUp",
+                            "bounceInDown",
+                            "bounceInLeft",
+                        ];
+                        $i = 0;
+                    ?>
+                    @foreach ($pages as $page)
 
-                    <div class="item" style="background-image: url('img/slider/bg3.jpg')">                 
-                         <div class="carousel-caption">
-                            <div class="animated bounceInUp">
-                                <h2>HELLO WORLD! <br>WE ARE KASPER,WE MAKE ART.</h2>
-                                <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur aliquet quam. Accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt.</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    @foreach ($homes as $home)
-                        <div class="item" style="background-image: url('{{$home->img-url}}')">                 
+                        <div class="item {{$page->id == 1 ? 'active' : ''}}" style="background-image: url('{{$page->imgurl}}')">   
                             <div class="carousel-caption">
-                                <div class="animated bounceInUp">
+                                <div class="animated {{$bounces[$i]}}">
                                     <h2>HELLO WORLD! <br>WE ARE KASPER,WE MAKE ART.</h2>
                                     <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur aliquet quam. Accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt.</p>
                                 </div>
                             </div>
                         </div>
-                        
+                        <?php 
+                        $i = $i < 3 ? $i + 1 : 0 ;
+                        ?>
                     @endforeach
 
 

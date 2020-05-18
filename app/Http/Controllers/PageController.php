@@ -14,8 +14,10 @@ class PageController extends Controller
      */
     public function index()
     {
-        //
+        $pages = Page::all();
+        return view('welcome', compact('pages'));
     }
+
 
     /**
      * Show the form for creating a new resource.
